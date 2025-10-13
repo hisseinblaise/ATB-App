@@ -1,0 +1,43 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content [fullscreen]="true">
+  <ion-header>
+    <ion-toolbar color="success">
+      <ion-title size="large">Create Account</ion-title>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/">
+          <ion-icon slot="start" name="add"></ion-icon>
+          Click me
+        </ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <ion-card-content>
+      <form (ngSubmit)="doRegister()">
+      <!-- <form onsubmit={doRegister()}> -->
+        <ion-input fill="outline" labelPlacement="floating" label="Email" type="email"
+          placeholder="youremail@domain.com"></ion-input>
+        <ion-input class="ion-margin-top" fill="outline" labelPlacement="floating" label="Password" type="password"
+          placeholder="******"></ion-input>
+        <ion-input class="ion-margin-top" fill="outline" labelPlacement="floating" label="Confirm Password" type="password"
+          placeholder="******"></ion-input>
+        <ion-button type="submit" expand="block" class="ion-margin-top">
+          Create my account
+          <ion-icon name="checkmark-done-outline" slot="end"></ion-icon>
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>Footer</ion-title>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,52 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar color="success">
+    <ion-title>Ouddaï Tech Hub</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+@if (!introSeen) {
+<app-intro (finish)="onFinish()"></app-intro>
+} @else {
+<ion-content [fullscreen]="true">
+  <ion-header>
+    <ion-toolbar color="success">
+      <ion-title size="large">login</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="ion-text-center ion-padding">
+    <img src="/assets/ath.svg" alt="ATH Logo" width="50%">
+  </div>
+
+  <ion-card>
+    <ion-card-content>
+      <form (ngSubmit)="doLogin()">
+        <ion-input fill="outline" labelPlacement="floating" label="Email" type="email"
+          placeholder="youremail@domain.com"></ion-input>
+        <ion-input class="ion-margin-top" fill="outline" labelPlacement="floating" label="Password" type="password"
+          placeholder="******"></ion-input>
+        <ion-button type="submit" expand="block" class="ion-margin-top">
+          Login
+          <ion-icon name="log-in-outline" slot="end"></ion-icon>
+        </ion-button>
+
+        <ion-button routerLink="/register" color="secondary" expand="block" class="ion-margin-top">
+          Create an account
+          <ion-icon name="person-circle-outline" slot="end"></ion-icon>
+        </ion-button>
+
+        <ion-button (click)="seeIntroAgain()" fill="clear" size="small" color="medium" type="button" expand="block" class="ion-margin-top">
+          Watch intro again
+          <ion-icon name="person-circle-outline" slot="end"></ion-icon>
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>Footer</ion-title>
+  </ion-toolbar>
+</ion-footer>
+}
