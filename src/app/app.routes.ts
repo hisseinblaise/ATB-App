@@ -20,4 +20,8 @@ export const routes: Routes = [
     path: 'app',
     loadComponent: () => import('./pages/menu/menu.page').then( m => m.MenuPage)
   },
+  {
+    path: 'service',
+    loadComponent: () => import('./pages/service/service.page').then( m => m.ServicePage)
+  },
 ];
