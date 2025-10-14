@@ -1,0 +1,228 @@
+.contact-content {
+  --background: #f8f9fa;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 0;
+  --padding-bottom: 16px;
+}
+
+// En-tête
+.contact-header {
+  background: linear-gradient(135deg, var(--primary-blue) 0%, #0056b3 100%);
+  color: white;
+  padding: 40px 20px 30px;
+  margin: 0 -16px 20px;
+  text-align: center;
+  border-radius: 0 0 30px 30px;
+
+  .header-content {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .header-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    opacity: 0.9;
+  }
+
+  .header-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin: 0 0 8px 0;
+    color: white;
+  }
+
+  .header-subtitle {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    opacity: 0.9;
+    margin: 0;
+    line-height: 1.4;
+  }
+}
+
+// Carte du formulaire
+.form-card {
+  margin: 0;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --background: white;
+}
+
+.card-title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: var(--dark-gray);
+  text-align: center;
+  margin-bottom: 8px;
+}
+.card-subtitle {
+  font-family: var(--font-body);
+  color: var(--dark-gray);
+  opacity: 0.7;
+  font-size: 0.9rem;
+  text-align: center;
+  margin: 0;
+}
+
+// Formulaire
+.contact-form {
+  padding-top: 8px;
+}
+
+// Items du formulaire
+.form-item {
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  --background: transparent;
+  --border-radius: 12px;
+  margin-bottom: 24px;
+
+  &.item-invalid {
+    --background: rgba(220, 53, 69, 0.05);
+  }
+
+  &.textarea-item {
+    --min-height: 140px;
+  }
+}
+
+.input-label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--dark-gray);
+  margin-bottom: 8px;
+
+  .required {
+    color: #e74c3c;
+  }
+}
+
+.custom-input, .custom-textarea {
+  --background: #f8f9fa;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  font-family: var(--font-body);
+  transition: all 0.3s ease;
+
+  &.input-error {
+    --background: rgba(220, 53, 69, 0.05);
+    border-color: #e74c3c;
+  }
+
+  &:focus {
+    --background: white;
+    border-color: var(--primary-blue);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 120, 215, 0.15);
+  }
+}
+
+.custom-textarea {
+  min-height: 120px;
+}
+
+// Messages d'erreur
+.error-message {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: #e74c3c;
+  margin: -16px 0 16px 16px;
+  font-weight: 500;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Bouton d'envoi
+.form-actions {
+  margin-top: 32px;
+}
+
+.submit-button {
+  --border-radius: 14px;
+  --padding-top: 18px;
+  --padding-bottom: 18px;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+
+  &:not([disabled]) {
+    --background: var(--primary-blue);
+    --background-hover: #0056b3;
+    --background-activated: #004494;
+  }
+
+  &[disabled] {
+    --background: #bdc3c7;
+  }
+
+  ion-spinner {
+    --color: white;
+  }
+}
+
+// Alertes
+.success-alert {
+  .alert-head {
+    text-align: center;
+  }
+
+  .alert-title {
+    color: #27ae60;
+    font-family: var(--font-heading);
+    font-weight: 600;
+  }
+
+  .alert-message {
+    font-family: var(--font-body);
+    line-height: 1.4;
+  }
+}
+
+// Animation de chargement
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+.submit-button:disabled {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+// Responsive
+@media (max-width: 380px) {
+  .contact-header {
+    padding: 30px 16px 20px;
+
+    .header-title {
+      font-size: 1.6rem;
+    }
+
+    .header-subtitle {
+      font-size: 0.9rem;
+    }
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+  }
+}
