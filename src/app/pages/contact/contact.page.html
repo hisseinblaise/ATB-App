@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -10,7 +10,7 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content [fullscreen]="true" class="contact-content">
   <!-- En-tête -->
@@ -39,7 +39,7 @@
         <!-- Prénom -->
         <ion-item class="form-item" [class.item-invalid]="hasError('firstName')">
           <ion-label position="stacked" class="input-label">
-            Prénom <span class="required">*</span>
+            Prénom <span class="required"></span>
           </ion-label>
           <ion-input 
             formControlName="firstName"
@@ -56,7 +56,7 @@
         <!-- Nom -->
         <ion-item class="form-item" [class.item-invalid]="hasError('lastName')">
           <ion-label position="stacked" class="input-label">
-            Nom <span class="required">*</span>
+            Nom <span class="required"></span>
           </ion-label>
           <ion-input 
             formControlName="lastName"
@@ -73,7 +73,7 @@
         <!-- Email -->
         <ion-item class="form-item" [class.item-invalid]="hasError('email')">
           <ion-label position="stacked" class="input-label">
-            Email <span class="required">*</span>
+            Email <span class="required"></span>
           </ion-label>
           <ion-input 
             formControlName="email"
@@ -90,7 +90,7 @@
         <!-- Sujet -->
         <ion-item class="form-item" [class.item-invalid]="hasError('subject')">
           <ion-label position="stacked" class="input-label">
-            Sujet <span class="required">*</span>
+            Sujet <span class="required"></span>
           </ion-label>
           <ion-input 
             formControlName="subject"
@@ -107,7 +107,7 @@
         <!-- Message -->
         <ion-item class="form-item textarea-item" [class.item-invalid]="hasError('message')">
           <ion-label position="stacked" class="input-label">
-            Message <span class="required">*</span>
+            Message <span class="required"></span>
           </ion-label>
           <ion-textarea 
             formControlName="message"
@@ -139,6 +139,7 @@
       </form>
     </ion-card-content>
   </ion-card>
+  
 
 </ion-content>
 <ion-footer>

@@ -24,6 +24,7 @@ interface ServiceItem {
   title: string;
   excerpt: string;
   description?: string;
+  image: string;
 }
 
 @Component({
@@ -62,17 +63,27 @@ export class ServicePage implements OnInit {
       {
         id: 's1',
         title: 'Développement mobile',
-        excerpt: 'Applications hybrides Ionic/Angular.',
+        excerpt: 'Applications hybrides performantes avec Ionic et Angular',
+        image: 'assets/images/training.jpg'
+
       },
       {
         id: 's2',
         title: 'UI/UX Design',
-        excerpt: 'Design moderne, responsive et accessible.',
+        excerpt: 'Des interfaces modernes, intuitives et adaptées à tous les écrans.',
+        image: 'assets/images/training.jpg'
       },
       {
         id: 's3',
-        title: 'Maintenance',
-        excerpt: 'Suivi, support et évolutions continues.',
+        title: 'Maintenance & support',
+        excerpt: 'Surveillance, mises à jour et amélioration continue de vos applications.',
+        image: 'assets/images/training.jpg'
+      },
+      {
+      id: 's4',
+      title: 'Formations Techniques',
+      excerpt: 'Ateliers pratiques sur le développement web et mobile.',
+      image: 'assets/images/training.jpg'
       },
     ];
   }

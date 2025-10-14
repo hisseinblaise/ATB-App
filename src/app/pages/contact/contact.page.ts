@@ -4,16 +4,18 @@ import { IonicModule } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 
+
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.page.html',
   styleUrls: ['./contact.page.scss'],
   standalone: true,
   imports: [
-    CommonModule, 
-    IonicModule, 
-    ReactiveFormsModule
-  ]
+    CommonModule,
+    IonicModule,
+    ReactiveFormsModule,
+  
+]
 })
 export class ContactPage implements OnInit {
   contactForm: FormGroup;

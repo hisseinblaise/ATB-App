@@ -18,14 +18,23 @@ export const routes: Routes = [
   },
   {
     path: 'app',
-    loadComponent: () => import('./pages/menu/menu.page').then( m => m.MenuPage)
-  },
-  {
-    path: 'service',
-    loadComponent: () => import('./pages/service/service.page').then( m => m.ServicePage)
-  },
-  {
-    path: 'contact',
-    loadComponent: () => import('./pages/contact/contact.page').then( m => m.ContactPage)
+    loadComponent: () =>
+      import('./pages/menu/menu.page').then((m) => m.MenuPage),
+    children: [
+      {
+        path: 'service',
+        loadComponent: () =>
+          import('./pages/service/service.page').then((m) => m.ServicePage),
+      },
+      {
+        path: 'contact',
+        loadComponent: () =>
+          import('./pages/contact/contact.page').then((m) => m.ContactPage),
+      },
+      {
+        path: '**',
+        redirectTo: 'app',
+      },
+    ],
   },
 ];

@@ -1,41 +1,43 @@
+/* === GLOBAL STYLES === */
 .contact-content {
   --background: #f8f9fa;
   --padding-start: 16px;
   --padding-end: 16px;
   --padding-top: 0;
   --padding-bottom: 16px;
+  font-family: var(--font-body, 'Inter', sans-serif);
 }
 
-// En-tête
+/* === HEADER === */
 .contact-header {
-  background: linear-gradient(135deg, var(--primary-blue) 0%, #0056b3 100%);
-  color: white;
+  background: linear-gradient(135deg, var(--ion-color-primary, #0078d7) 0%, #0056b3 100%);
+  color: #fff;
   padding: 40px 20px 30px;
-  margin: 0 -16px 20px;
+  margin: 0 -16px 24px;
   text-align: center;
   border-radius: 0 0 30px 30px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 
   .header-content {
-    max-width: 400px;
+    max-width: 420px;
     margin: 0 auto;
   }
 
   .header-icon {
-    font-size: 48px;
-    margin-bottom: 16px;
+    font-size: 3rem;
+    margin-bottom: 12px;
     opacity: 0.9;
   }
 
   .header-title {
-    font-family: var(--font-heading);
+    font-family: var(--font-heading, 'Poppins', sans-serif);
     font-weight: 700;
-    font-size: 1.8rem;
-    margin: 0 0 8px 0;
-    color: white;
+    font-size: 1.9rem;
+    margin: 0 0 8px;
+    color: #fff;
   }
 
   .header-subtitle {
-    font-family: var(--font-body);
     font-size: 1rem;
     opacity: 0.9;
     margin: 0;
@@ -43,43 +45,48 @@
   }
 }
 
-// Carte du formulaire
+/* === FORM CARD === */
 .form-card {
   margin: 0;
-  border-radius: 16px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  --background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --background: #fff;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.12);
+  }
 }
 
 .card-title {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading, 'Poppins', sans-serif);
   font-weight: 600;
   font-size: 1.3rem;
-  color: var(--dark-gray);
+  color: #333;
   text-align: center;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
+
 .card-subtitle {
-  font-family: var(--font-body);
-  color: var(--dark-gray);
-  opacity: 0.7;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  color: #666;
+  opacity: 0.8;
   font-size: 0.9rem;
   text-align: center;
   margin: 0;
 }
 
-// Formulaire
+/* === FORM LAYOUT === */
 .contact-form {
   padding-top: 8px;
 }
 
-// Items du formulaire
+/* === FORM ITEMS === */
 .form-item {
-  --padding-start: 0;
-  --inner-padding-end: 0;
   --background: transparent;
-  --border-radius: 12px;
-  margin-bottom: 24px;
+  margin-bottom: 22px;
 
   &.item-invalid {
     --background: rgba(220, 53, 69, 0.05);
@@ -90,19 +97,22 @@
   }
 }
 
+/* === LABELS === */
 .input-label {
-  font-family: var(--font-body);
+  font-family: var(--font-body, 'Inter', sans-serif);
   font-weight: 600;
   font-size: 0.9rem;
-  color: var(--dark-gray);
-  margin-bottom: 8px;
+  color: #333;
+  margin-bottom: 6px;
 
   .required {
     color: #e74c3c;
   }
 }
 
-.custom-input, .custom-textarea {
+/* === INPUTS & TEXTAREAS === */
+.custom-input,
+.custom-textarea {
   --background: #f8f9fa;
   --padding-start: 16px;
   --padding-end: 16px;
@@ -110,19 +120,19 @@
   --padding-bottom: 12px;
   border-radius: 12px;
   border: 2px solid transparent;
-  font-family: var(--font-body);
-  transition: all 0.3s ease;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  transition: all 0.25s ease;
 
   &.input-error {
     --background: rgba(220, 53, 69, 0.05);
     border-color: #e74c3c;
   }
 
-  &:focus {
-    --background: white;
-    border-color: var(--primary-blue);
+  &:focus-within {
+    --background: #fff;
+    border-color: var(--ion-color-primary, #0078d7);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 120, 215, 0.15);
+    box-shadow: 0 0 8px rgba(0, 120, 215, 0.2);
   }
 }
 
@@ -130,20 +140,19 @@
   min-height: 120px;
 }
 
-// Messages d'erreur
+/* === ERROR MESSAGES === */
 .error-message {
-  font-family: var(--font-body);
   font-size: 0.8rem;
   color: #e74c3c;
-  margin: -16px 0 16px 16px;
+  margin: -10px 0 16px 16px;
   font-weight: 500;
-  animation: slideDown 0.3s ease-out;
+  animation: fadeDown 0.3s ease-out;
 }
 
-@keyframes slideDown {
+@keyframes fadeDown {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
   to {
     opacity: 1;
@@ -151,35 +160,36 @@
   }
 }
 
-// Bouton d'envoi
+/* === SUBMIT BUTTON === */
 .form-actions {
   margin-top: 32px;
 }
 
 .submit-button {
   --border-radius: 14px;
-  --padding-top: 18px;
-  --padding-bottom: 18px;
+  --padding-top: 16px;
+  --padding-bottom: 16px;
   font-weight: 600;
   font-size: 1rem;
   letter-spacing: 0.5px;
+  transition: all 0.25s ease;
 
   &:not([disabled]) {
-    --background: var(--primary-blue);
+    --background: var(--ion-color-primary, #0078d7);
     --background-hover: #0056b3;
     --background-activated: #004494;
   }
 
   &[disabled] {
-    --background: #bdc3c7;
+    --background: #cfd4d9;
   }
 
   ion-spinner {
-    --color: white;
+    --color: #fff;
   }
 }
 
-// Alertes
+/* === SUCCESS ALERT === */
 .success-alert {
   .alert-head {
     text-align: center;
@@ -187,34 +197,41 @@
 
   .alert-title {
     color: #27ae60;
-    font-family: var(--font-heading);
+    font-family: var(--font-heading, 'Poppins', sans-serif);
     font-weight: 600;
   }
 
   .alert-message {
-    font-family: var(--font-body);
-    line-height: 1.4;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    line-height: 1.5;
+    color: #333;
   }
 }
 
-// Animation de chargement
+/* === DISABLED BUTTON PULSE ANIMATION === */
 @keyframes pulse {
-  0% { opacity: 1; }
-  50% { opacity: 0.6; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.65;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .submit-button:disabled {
   animation: pulse 1.5s ease-in-out infinite;
 }
 
-// Responsive
-@media (max-width: 380px) {
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 400px) {
   .contact-header {
-    padding: 30px 16px 20px;
+    padding: 28px 16px 20px;
 
     .header-title {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
     }
 
     .header-subtitle {
@@ -223,6 +240,6 @@
   }
 
   .card-title {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
   }
 }
