@@ -15,6 +15,12 @@ import {
   IonButtons,
   IonBackButton,
 } from '@ionic/angular/standalone';
+import {
+  NavController,
+  LoadingController,
+  ToastController
+} from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth-service';
 
 @Component({
   selector: 'app-register',
@@ -39,12 +45,56 @@ import {
   ],
 })
 export class RegisterPage implements OnInit {
-  constructor(private _location: Location) {}
+  email = '';
+  password = '';
+  confirmPassword = '';
+
+  constructor(
+    private authService: AuthService,
+    private loadingCtrl: LoadingController,
+    private toastCtrl: ToastController,
+    private navCtrl: NavController,
+    private _location: Location
+  ) {}
 
   ngOnInit() {}
 
-  doRegister() {
-    console.log('doRegister');
-    this._location.back()
+  async doRegister() {
+    if (this.password !== this.confirmPassword) {
+      const toast = await this.toastCtrl.create({
+        message: "Les mots de passe ne correspondent pas.",
+        duration: 2000,
+        color: 'danger',
+      });
+      await toast.present();
+      return;
+    }
+
+    const loading = await this.loadingCtrl.create({
+      message: 'Inscription en cours...',
+      spinner: 'crescent',
+    });
+    await loading.present();
+
+    try {
+      await this.authService.register(this.email, this.password);
+
+      const toast = await this.toastCtrl.create({
+        message: 'Compte créé avec succès !',
+        duration: 2000,
+        color: 'success',
+      });
+      await toast.present();
+      this.navCtrl.navigateRoot('/verifyemail');
+    } catch (err) {
+      const toast = await this.toastCtrl.create({
+        message: 'Erreur lors de l’inscription.',
+        duration: 2000,
+        color: 'danger',
+      });
+      await toast.present();
+    } finally {
+      await loading.dismiss();
+    }
   }
 }

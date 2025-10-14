@@ -22,6 +22,7 @@ import {
 } from '@ionic/angular';
 
 import { IntroComponent } from '../../components/intro/intro.component';
+import { AuthService } from 'src/app/services/auth-service';
 
 @Component({
   selector: 'app-login',
@@ -49,51 +50,77 @@ export class LoginPage implements OnInit {
   introSeen = true;
   INTRO_KEY = 'intro-seen';
 
+  email = '';
+  password = '';
+
   constructor(
-    private router: Router,
-    private navCtr: NavController,
+    private navCtrl: NavController,
     private loadingCtrl: LoadingController,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
     this.checkStorage();
   }
 
+  // 🔹 Vérifie si l’intro a déjà été vue
   async checkStorage() {
     const seen = await Preferences.get({ key: this.INTRO_KEY });
-    console.log('🚀 ~ file: login.page.ts:51 ~ checkStorage ~ seen:', seen);
     this.introSeen = seen.value === 'true';
   }
 
+  // 🔹 Login utilisateur
   async doLogin() {
-    // create loading spinner
+    if (!this.email || !this.password) {
+      this.showToast('Veuillez remplir tous les champs', 'warning');
+      return;
+    }
+
     const loading = await this.loadingCtrl.create({
-      message: 'Logging in...',
+      message: 'Connexion...',
       spinner: 'crescent',
     });
-    await loading.present(); // present loading spinner
+    await loading.present();
 
-    try {
-      console.log('doLogin');
-      // simulate login (api call)
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      // this.router.navigate(['app']);
-      this.navCtr.navigateRoot('/app');
-    } finally {
-      await loading.dismiss(); // dismiss loading spinner
-    }
+    this.authService.login(this.email, this.password).subscribe({
+      next: async () => {
+        await loading.dismiss();
+        this.showToast('Connexion réussie 🎉', 'success');
+        this.navCtrl.navigateRoot('/dashboard');
+      },
+      error: async (err) => {
+        await loading.dismiss();
+        const msg =
+          err.error?.message || 'Échec de la connexion. Vérifiez vos identifiants.';
+        this.showToast(msg, 'danger');
+      },
+    });
   }
 
+  // 🔹 Méthode utilitaire pour afficher les toasts
+  private async showToast(message: string, color: string = 'primary') {
+    const toast = await this.toastCtrl.create({
+      message,
+      duration: 2500,
+      position: 'bottom',
+      color,
+    });
+    toast.present();
+  }
+
+  // 🔹 Quand l’intro est terminée
   onFinish() {
-    console.log('onFinish');
     this.introSeen = true;
     Preferences.set({ key: this.INTRO_KEY, value: 'true' });
   }
 
-  seeIntroAgain = () => {
+  // 🔹 Pour revoir l’intro
+  seeIntroAgain() {
     this.introSeen = false;
     Preferences.remove({ key: this.INTRO_KEY });
-  };
+  }
 }
+
+  
+
