@@ -77,8 +77,7 @@ export class RegisterPage implements OnInit {
     await loading.present();
 
     try {
-      await this.authService.register(this.email, this.password);
-
+      
       const toast = await this.toastCtrl.create({
         message: 'Compte créé avec succès !',
         duration: 2000,
