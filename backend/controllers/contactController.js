@@ -8,7 +8,6 @@ const transporter = require("../email/mailTransporter");
 
     const newContact = new Contact({ lastName, firstName, email, sujet, message });
     await newContact.save();
-
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: email,

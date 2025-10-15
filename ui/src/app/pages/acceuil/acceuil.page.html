@@ -1,0 +1,69 @@
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Accueil</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Section d’introduction -->
+  <section class="intro-section ion-text-center">
+    <ion-img src="assets/images/abeche-tech-logo.png" alt="Abéché Tech Hub" style="max-width: 180px; margin: 20px auto;"></ion-img>
+    <h1>Bienvenue sur <strong>ATB App</strong></h1>
+    <p>
+      L’application officielle d’<strong>Abéché Tech Hub</strong>, conçue pour vous rapprocher de nos services et de notre équipe.
+      Avec <strong>ATB App</strong>, découvrez nos solutions innovantes, restez informé de nos activités et contactez-nous facilement via notre formulaire intégré.
+    </p>
+  </section>
+
+  <!-- Section Services -->
+  <section class="services-section ion-margin-top">
+    <h2 class="ion-text-center">Nos Services</h2>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="4">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Développement Web & Mobile</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              Création d’applications modernes, performantes et adaptées à vos besoins avec les dernières technologies.
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size="12" size-md="4">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Formation & Coaching</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              Programmes de formation en technologies numériques, encadrés par des experts passionnés.
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size="12" size-md="4">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Conseil & Innovation</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              Accompagnement stratégique pour booster la transformation digitale de votre entreprise.
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </section>
+
+  <!-- Section Contact -->
+  <section class="contact-section ion-text-center ion-padding">
+    <h2>Besoin d’informations ?</h2>
+    <p>Contactez notre équipe directement depuis l’application via notre <strong>formulaire intégré</strong>.</p>
+    <ion-button routerLink="/app/contact" expand="block" color="secondary">
+      Nous Contacter
+    </ion-button>
+  </section>
+
+</ion-content>
