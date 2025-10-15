@@ -48,8 +48,7 @@ import { AuthService } from 'src/app/services/auth-service';
   ],
 })
 export class LoginPage implements OnInit {
-
-  introSeen = true;
+  introSeen = false;
   INTRO_KEY = 'intro-seen';
   loginForm!: FormGroup;
   errorMessage: string = '';

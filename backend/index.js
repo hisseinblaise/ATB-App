@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const usersRouter = require("./routers/usersRouter");
 const contactRouter = require("./routers/contactRouter");
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.port;
 const cors = require("cors")
 
 mongoose

@@ -1,4 +1,4 @@
-POST http://localhost:3000/api/auth/register
+POST http://localhost:5432/api/auth/register
 Content-Type: application/json
 
 {
@@ -26,7 +26,7 @@ Content-Type: application/json
     "password": "      "
 }
 ###
-POST http://localhost:3000/api/contact/saveMessage
+POST http://localhost:5432/api/contact/saveMessage
 Content-Type: application/json
 
 {
@@ -39,10 +39,10 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3000/api/contact/getAllMessages
+GET http://localhost:5432/api/contact/getAllMessages
 
 ###
-DELETE http://localhost:3000/api/contact/68ee1893709b24768382c9ab 
+DELETE http://localhost:5432/api/contact/68ee1893709b24768382c9ab
 
 ###
-GET http://localhost:3000/api/contact/68ee1893709b24768382c9ab  
+GET http://localhost:5432/api/contact/68ee1893709b24768382c9ab
