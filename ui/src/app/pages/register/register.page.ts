@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   IonContent,
   IonHeader,
@@ -21,6 +21,7 @@ import {
   ToastController
 } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -42,58 +43,59 @@ import { AuthService } from 'src/app/services/auth-service';
     IonInput,
     IonButtons,
     IonBackButton,
+    CommonModule,
+    ReactiveFormsModule
   ],
 })
 export class RegisterPage implements OnInit {
-  email = '';
-  password = '';
-  confirmPassword = '';
+  // ✅ propriété pour gérer la visibilité
+  registerForm: FormGroup;
+  errorMessage: string = '';
+  successMessage: string = '';
 
-  constructor(
-    private authService: AuthService,
-    private loadingCtrl: LoadingController,
-    private toastCtrl: ToastController,
-    private navCtrl: NavController,
-    private _location: Location
-  ) {}
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+    this.registerForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
+    });
+  }
 
-  ngOnInit() {}
+  ngOnInit(): void {
 
-  async doRegister() {
-    if (this.password !== this.confirmPassword) {
-      const toast = await this.toastCtrl.create({
-        message: "Les mots de passe ne correspondent pas.",
-        duration: 2000,
-        color: 'danger',
-      });
-      await toast.present();
+  }
+
+  doRegister() {
+    console.log('doRegister called');
+
+    if (!this.registerForm.valid) {
+      console.log("Le formulaire est invalide.");
+
+      return
+    };
+
+    const email = this.registerForm.get('email')?.value;
+    const password = this.registerForm.get('password')?.value;
+    const confirmPassword = this.registerForm.get('confirmPassword')?.value;
+    console.log('Form Values:', { email, password, confirmPassword });
+
+    if (password !== confirmPassword) {
+      this.errorMessage = 'Les mots de passe ne correspondent pas';
+      this.successMessage = '';
       return;
     }
 
-    const loading = await this.loadingCtrl.create({
-      message: 'Inscription en cours...',
-      spinner: 'crescent',
+    this.authService.register(email, password, confirmPassword).subscribe({
+      next: res => {
+        this.errorMessage = '';
+        this.successMessage = res.message || 'Inscription réussie';
+        console.log('Inscription réussie', res);
+      },
+      error: err => {
+        this.errorMessage = err.error.error || err.error.message || 'Erreur serveur';
+        this.successMessage = '';
+        console.error('Erreur inscription', err);
+      }
     });
-    await loading.present();
-
-    try {
-      
-      const toast = await this.toastCtrl.create({
-        message: 'Compte créé avec succès !',
-        duration: 2000,
-        color: 'success',
-      });
-      await toast.present();
-      this.navCtrl.navigateRoot('/verifyemail');
-    } catch (err) {
-      const toast = await this.toastCtrl.create({
-        message: 'Erreur lors de l’inscription.',
-        duration: 2000,
-        color: 'danger',
-      });
-      await toast.present();
-    } finally {
-      await loading.dismiss();
-    }
   }
 }

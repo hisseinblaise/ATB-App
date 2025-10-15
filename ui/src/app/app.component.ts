@@ -6,6 +6,11 @@ import {
   logInOutline,
   personCircleOutline,
   checkmarkDoneOutline,
+  add,
+  mailOutline,
+  informationCircleOutline,
+  briefcaseOutline,
+  homeOutline,
 } from 'ionicons/icons';
 
 @Component({
@@ -15,6 +20,15 @@ import {
 })
 export class AppComponent {
   constructor() {
-    addIcons({ logInOutline, personCircleOutline, checkmarkDoneOutline });
+    addIcons({
+      logInOutline,
+      personCircleOutline,
+      checkmarkDoneOutline,
+      add,
+      mailOutline,
+      informationCircleOutline,
+      briefcaseOutline,
+      homeOutline,
+    });
   }
 }

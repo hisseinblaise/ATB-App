@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { User } from '../../interfaces/authInterface';
+import { User } from '../interfaces/authInterface';
 
 export interface AuthResponse {
   message: string;
@@ -36,14 +36,14 @@ export class AuthService {
         localStorage.removeItem('token');
       }
     }
-
-  }
-  register(email: string, password: string): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/register`, { email, password });
   }
 
-  login(email: string, password: string): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/login`, { email, password });
+  register(email: string, password: string, confirmPassword: string): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.apiUrl}/register`, { email, password, confirmPassword });
+  }
+
+  login(email: string, password: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/login`, { email, password });
   }
 
   verifyEmail(otpToken: string): Observable<{ message: string }> {

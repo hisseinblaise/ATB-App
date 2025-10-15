@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   IonContent,
   IonHeader,
@@ -35,6 +35,7 @@ import { AuthService } from 'src/app/services/auth-service';
     IonTitle,
     IonToolbar,
     CommonModule,
+    ReactiveFormsModule,
     FormsModule,
     IonFooter,
     IonCard,
@@ -47,80 +48,86 @@ import { AuthService } from 'src/app/services/auth-service';
   ],
 })
 export class LoginPage implements OnInit {
+
   introSeen = true;
   INTRO_KEY = 'intro-seen';
-
-  email = '';
-  password = '';
-
+  loginForm!: FormGroup;
+  errorMessage: string = '';
+  successMessage: string = '';
   constructor(
-    private navCtrl: NavController,
+    private router: Router,
+    private navCtr: NavController,
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
-    private authService: AuthService
-  ) {}
+    private fb: FormBuilder, private userService: AuthService
+  ) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+    });
+  }
 
   ngOnInit() {
     this.checkStorage();
   }
-
-  // 🔹 Vérifie si l’intro a déjà été vue
   async checkStorage() {
     const seen = await Preferences.get({ key: this.INTRO_KEY });
+    console.log('🚀 ~ file: login.page.ts:51 ~ checkStorage ~ seen:', seen);
     this.introSeen = seen.value === 'true';
   }
+  get f() {
+  return this.loginForm.controls;
+}
 
-  // 🔹 Login utilisateur
   async doLogin() {
-    if (!this.email || !this.password) {
-      this.showToast('Veuillez remplir tous les champs', 'warning');
-      return;
-    }
+     if (!this.loginForm.valid) return;
+  const email = this.f['email'].value;
+  const password = this.f['password'].value;
 
+  this.userService.login(email, password).subscribe({
+    next: res => {
+      this.errorMessage = '';
+      this.successMessage = res.message || 'Connexion réussie';
+      console.log('Connexion réussie', res);
+    },
+    error: (err: any) => {
+      this.errorMessage = err.error.error || err.error.message || 'Erreur de connexion';
+      this.successMessage = '';
+      console.error('Erreur de connexion', err);
+    }
+  });
+    // create loading spinner
     const loading = await this.loadingCtrl.create({
-      message: 'Connexion...',
+      message: 'Logging in...',
       spinner: 'crescent',
     });
-    await loading.present();
+    await loading.present(); // present loading spinner
 
-    this.authService.login(this.email, this.password).subscribe({
-      next: async () => {
-        await loading.dismiss();
-        this.showToast('Connexion réussie 🎉', 'success');
-        this.navCtrl.navigateRoot('/dashboard');
-      },
-      error: async (err) => {
-        await loading.dismiss();
-        const msg =
-          err.error?.message || 'Échec de la connexion. Vérifiez vos identifiants.';
-        this.showToast(msg, 'danger');
-      },
-    });
+    try {
+      console.log('doLogin');
+      // simulate login (api call)
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      // this.router.navigate(['app']);
+      this.navCtr.navigateRoot('/app');
+    } finally {
+      await loading.dismiss(); // dismiss loading spinner
+    }
   }
 
-  // 🔹 Méthode utilitaire pour afficher les toasts
-  private async showToast(message: string, color: string = 'primary') {
-    const toast = await this.toastCtrl.create({
-      message,
-      duration: 2500,
-      position: 'bottom',
-      color,
-    });
-    toast.present();
-  }
-
-  // 🔹 Quand l’intro est terminée
   onFinish() {
+    console.log('onFinish');
     this.introSeen = true;
     Preferences.set({ key: this.INTRO_KEY, value: 'true' });
   }
 
-  // 🔹 Pour revoir l’intro
-  seeIntroAgain() {
+  seeIntroAgain = () => {
     this.introSeen = false;
     Preferences.remove({ key: this.INTRO_KEY });
-  }
+  };
 }
 
   
+
+
 

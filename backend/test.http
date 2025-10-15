@@ -1,0 +1,48 @@
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+    "email": "hisseinblaise7@gmail.com",
+    "password": "123456",
+    "confirmPassword": "123456"
+}
+
+###
+PATCH http://localhost:3000/api/auth/verify
+Content-Type: application/json
+
+{
+  "otp": 6042130,
+  "otpToken": "3ac7e223-ff9f-4d3f-b7a0-d287f91d7952",
+  "purpose": "verify email"
+}
+
+###
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "test@email.com",
+    "password": "      "
+}
+###
+POST http://localhost:3000/api/contact/saveMessage
+Content-Type: application/json
+
+{
+    "name": "fatime",
+    "lastName": "fatime",
+    "firstName": "Hissein Blaise",
+    "email": "fatimemahamatsileh@gmail.com",
+    "sujet": "hhhhh",
+    "message": "hhhhhh"
+}
+
+###
+GET http://localhost:3000/api/contact/getAllMessages
+
+###
+DELETE http://localhost:3000/api/contact/68ee1893709b24768382c9ab 
+
+###
+GET http://localhost:3000/api/contact/68ee1893709b24768382c9ab  

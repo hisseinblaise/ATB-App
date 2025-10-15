@@ -19,15 +19,27 @@
 
   <ion-card>
     <ion-card-content>
-      <form (ngSubmit)="doRegister()">
-      <!-- <form onsubmit={doRegister()}> -->
-        <ion-input fill="outline" labelPlacement="floating" label="Email" type="email"
+      @if (errorMessage) {
+      <div class="ion-text-center ion-padding" style="color: red;">
+        {{ errorMessage }}
+      </div>
+      }
+
+      @if (successMessage) {
+      <div class="ion-text-center ion-padding" style="color: green;">
+        {{ successMessage }}
+      </div>
+      }
+
+      <form [formGroup]="registerForm" (ngSubmit)="doRegister()">
+        <!-- <form onsubmit={doRegister()}> -->
+        <ion-input formControlName="email" fill="outline" labelPlacement="floating" label="Email" type="email"
           placeholder="youremail@domain.com"></ion-input>
-        <ion-input class="ion-margin-top" fill="outline" labelPlacement="floating" label="Password" type="password"
-          placeholder="******"></ion-input>
-        <ion-input class="ion-margin-top" fill="outline" labelPlacement="floating" label="name" type="text"
-          placeholder="******"></ion-input>
-        <ion-button type="submit" expand="block" class="ion-margin-top">
+        <ion-input formControlName="password" class="ion-margin-top" fill="outline" labelPlacement="floating"
+          label="Password" type="password" placeholder="******"></ion-input>
+        <ion-input formControlName="confirmPassword" class="ion-margin-top" fill="outline" labelPlacement="floating"
+          label="Confirm Password" type="password" placeholder="******"></ion-input>
+        <ion-button type="submit" expand="block" class="ion-margin-top" [disabled]="registerForm.invalid">
           Create my account
           <ion-icon name="checkmark-done-outline" slot="end"></ion-icon>
         </ion-button>
