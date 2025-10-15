@@ -4,9 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import {
   IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
+
   IonCard,
   IonCardHeader,
   IonCardTitle,
@@ -23,7 +21,6 @@ interface ServiceItem {
   id: string;
   title: string;
   excerpt: string;
-  description?: string;
   image: string;
 }
 
@@ -36,9 +33,7 @@ interface ServiceItem {
     CommonModule,
     FormsModule,
     IonContent,
-    IonHeader,
-    IonTitle,
-    IonToolbar,
+   
     IonCard,
     IonCardHeader,
     IonCardTitle,
@@ -46,9 +41,9 @@ interface ServiceItem {
     IonGrid,
     IonRow,
     IonCol,
-    IonButton,
+ 
     IonSearchbar,
-    IonItem,
+
   ],
 })
 export class ServicePage implements OnInit {
@@ -64,26 +59,26 @@ export class ServicePage implements OnInit {
         id: 's1',
         title: 'Développement mobile',
         excerpt: 'Applications hybrides performantes avec Ionic et Angular',
-        image: 'assets/images/training.jpg'
+        image: 'assets/images/1.webp'
 
       },
       {
         id: 's2',
         title: 'UI/UX Design',
         excerpt: 'Des interfaces modernes, intuitives et adaptées à tous les écrans.',
-        image: 'assets/images/training.jpg'
+        image: 'assets/images/ui.webp'
       },
       {
         id: 's3',
         title: 'Maintenance & support',
         excerpt: 'Surveillance, mises à jour et amélioration continue de vos applications.',
-        image: 'assets/images/training.jpg'
+        image: 'assets/images/maintenance.avif'
       },
       {
       id: 's4',
       title: 'Formations Techniques',
       excerpt: 'Ateliers pratiques sur le développement web et mobile.',
-      image: 'assets/images/training.jpg'
+      image: 'assets/images/formation.webp'
       },
     ];
   }

@@ -37,4 +37,13 @@ export const routes: Routes = [
       },
     ],
   },
+  {
+    path: 'tabs',
+    loadComponent: () => import('./pages/tabs/tabs.page').then( m => m.TabsPage)
+  },
+  {
+  path: 'service/:id',
+  loadComponent: () => import('./pages/service/service.page').then(m => m.ServicePage)
+}
+
 ];
