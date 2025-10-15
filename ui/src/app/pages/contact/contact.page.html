@@ -1,0 +1,184 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Contact</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="resetForm()" fill="clear">
+        <ion-icon name="refresh" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content [fullscreen]="true" class="contact-content">
+  <!-- En-tête -->
+  <div class="contact-header">
+    <div class="header-content">
+      <ion-icon name="mail" class="header-icon"></ion-icon>
+      <h1 class="header-title">Contactez-nous</h1>
+      <p class="header-subtitle">Nous sommes à votre écoute</p>
+    </div>
+  </div>
+
+  <!-- Formulaire simplifié -->
+  <ion-card class="form-card">
+    <ion-card-header>
+      <ion-card-title class="card-title">
+        Formulaire de contact
+      </ion-card-title>
+      <ion-card-subtitle class="card-subtitle">
+        Tous les champs sont obligatoires
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+        
+        <!-- Prénom -->
+        <ion-item class="form-item" [class.item-invalid]="hasError('firstName')">
+          <ion-label position="stacked" class="input-label">
+            Prénom <span class="required"></span>
+          </ion-label>
+          <ion-input 
+            formControlName="firstName"
+            type="text" 
+            placeholder="Votre prénom"
+            class="custom-input"
+            [class.input-error]="hasError('firstName')">
+          </ion-input>
+        </ion-item>
+        <div class="error-message" *ngIf="hasError('firstName')">
+          {{ getErrorMessage('firstName') }}
+        </div>
+
+        <!-- Nom -->
+        <ion-item class="form-item" [class.item-invalid]="hasError('lastName')">
+          <ion-label position="stacked" class="input-label">
+            Nom <span class="required"></span>
+          </ion-label>
+          <ion-input 
+            formControlName="lastName"
+            type="text" 
+            placeholder="Votre nom"
+            class="custom-input"
+            [class.input-error]="hasError('lastName')">
+          </ion-input>
+        </ion-item>
+        <div class="error-message" *ngIf="hasError('lastName')">
+          {{ getErrorMessage('lastName') }}
+        </div>
+
+        <!-- Email -->
+        <ion-item class="form-item" [class.item-invalid]="hasError('email')">
+          <ion-label position="stacked" class="input-label">
+            Email <span class="required"></span>
+          </ion-label>
+          <ion-input 
+            formControlName="email"
+            type="email" 
+            placeholder="votre@email.com"
+            class="custom-input"
+            [class.input-error]="hasError('email')">
+          </ion-input>
+        </ion-item>
+        <div class="error-message" *ngIf="hasError('email')">
+          {{ getErrorMessage('email') }}
+        </div>
+
+        <!-- Sujet -->
+        <ion-item class="form-item" [class.item-invalid]="hasError('subject')">
+          <ion-label position="stacked" class="input-label">
+            Sujet <span class="required"></span>
+          </ion-label>
+          <ion-input 
+            formControlName="subject"
+            type="text" 
+            placeholder="Objet de votre message"
+            class="custom-input"
+            [class.input-error]="hasError('subject')">
+          </ion-input>
+        </ion-item>
+        <div class="error-message" *ngIf="hasError('subject')">
+          {{ getErrorMessage('subject') }}
+        </div>
+
+        <!-- Message -->
+        <ion-item class="form-item textarea-item" [class.item-invalid]="hasError('message')">
+          <ion-label position="stacked" class="input-label">
+            Message <span class="required"></span>
+          </ion-label>
+          <ion-textarea 
+            formControlName="message"
+            placeholder="Votre message..."
+            rows="6"
+            autoGrow="true"
+            class="custom-textarea"
+            [class.input-error]="hasError('message')">
+          </ion-textarea>
+        </ion-item>
+        <div class="error-message" *ngIf="hasError('message')">
+          {{ getErrorMessage('message') }}
+        </div>
+
+        <!-- Bouton d'envoi -->
+        <div class="form-actions">
+          <ion-button 
+            type="submit" 
+            expand="block" 
+            size="large"
+            [disabled]="isSubmitting"
+            class="medium">
+            <ion-spinner *ngIf="isSubmitting" name="crescent"></ion-spinner>
+            <ion-icon *ngIf="!isSubmitting" name="send" slot="start"></ion-icon>
+            {{ isSubmitting ? 'Envoi en cours...' : 'Envoyer' }}
+          </ion-button>
+        </div>
+
+      </form>
+    </ion-card-content>
+  </ion-card>
+  
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>Footer</ion-title>
+  </ion-toolbar>
+</ion-footer>
+<!-- Swiper Web Component
+  <swiper-container
+    slides-per-view="1"
+    pagination="true"
+    navigation="true"
+    loop="true"
+    style="height: 300px;"
+  >
+    <swiper-slide>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Slide 1</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>This is the first slide.</ion-card-content>
+      </ion-card>
+    </swiper-slide>
+
+    <swiper-slide>
+      <ion-card color="success">
+        <ion-card-header>
+          <ion-card-title>Slide 2</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>This is the second slide.</ion-card-content>
+      </ion-card>
+    </swiper-slide>
+
+    <swiper-slide>
+      <ion-card color="tertiary">
+        <ion-card-header>
+          <ion-card-title>Slide 3</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>This is the third slide.</ion-card-content>
+      </ion-card>
+    </swiper-slide>
+  </swiper-container> -->

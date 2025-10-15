@@ -1,0 +1,245 @@
+/* === GLOBAL STYLES === */
+.contact-content {
+  --background: #f8f9fa;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 0;
+  --padding-bottom: 16px;
+  font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+/* === HEADER === */
+.contact-header {
+  background: linear-gradient(135deg, var(--ion-color-primary, #0078d7) 0%, #0056b3 100%);
+  color: #fff;
+  padding: 40px 20px 30px;
+  margin: 0 -16px 24px;
+  text-align: center;
+  border-radius: 0 0 30px 30px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+
+  .header-content {
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .header-icon {
+    font-size: 3rem;
+    margin-bottom: 12px;
+    opacity: 0.9;
+  }
+
+  .header-title {
+    font-family: var(--font-heading, 'Poppins', sans-serif);
+    font-weight: 700;
+    font-size: 1.9rem;
+    margin: 0 0 8px;
+    color: #fff;
+  }
+
+  .header-subtitle {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin: 0;
+    line-height: 1.4;
+  }
+}
+
+/* === FORM CARD === */
+.form-card {
+  margin: 0;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --background: #fff;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.12);
+  }
+}
+
+.card-title {
+  font-family: var(--font-heading, 'Poppins', sans-serif);
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.card-subtitle {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  color: #666;
+  opacity: 0.8;
+  font-size: 0.9rem;
+  text-align: center;
+  margin: 0;
+}
+
+/* === FORM LAYOUT === */
+.contact-form {
+  padding-top: 8px;
+}
+
+/* === FORM ITEMS === */
+.form-item {
+  --background: transparent;
+  margin-bottom: 22px;
+
+  &.item-invalid {
+    --background: rgba(220, 53, 69, 0.05);
+  }
+
+  &.textarea-item {
+    --min-height: 140px;
+  }
+}
+
+/* === LABELS === */
+.input-label {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 6px;
+
+  .required {
+    color: #e74c3c;
+  }
+}
+
+/* === INPUTS & TEXTAREAS === */
+.custom-input,
+.custom-textarea {
+  --background: #f8f9fa;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  transition: all 0.25s ease;
+
+  &.input-error {
+    --background: rgba(220, 53, 69, 0.05);
+    border-color: #e74c3c;
+  }
+
+  &:focus-within {
+    --background: #fff;
+    border-color: var(--ion-color-primary, #0078d7);
+    transform: translateY(-1px);
+    box-shadow: 0 0 8px rgba(0, 120, 215, 0.2);
+  }
+}
+
+.custom-textarea {
+  min-height: 120px;
+}
+
+/* === ERROR MESSAGES === */
+.error-message {
+  font-size: 0.8rem;
+  color: #e74c3c;
+  margin: -10px 0 16px 16px;
+  font-weight: 500;
+  animation: fadeDown 0.3s ease-out;
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === SUBMIT BUTTON === */
+.form-actions {
+  margin-top: 32px;
+}
+
+.submit-button {
+  --border-radius: 14px;
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  transition: all 0.25s ease;
+
+  &:not([disabled]) {
+    --background: var(--ion-color-primary, #0078d7);
+    --background-hover: #0056b3;
+    --background-activated: #004494;
+  }
+
+  &[disabled] {
+    --background: #cfd4d9;
+  }
+
+  ion-spinner {
+    --color: #fff;
+  }
+}
+
+/* === SUCCESS ALERT === */
+.success-alert {
+  .alert-head {
+    text-align: center;
+  }
+
+  .alert-title {
+    color: #27ae60;
+    font-family: var(--font-heading, 'Poppins', sans-serif);
+    font-weight: 600;
+  }
+
+  .alert-message {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    line-height: 1.5;
+    color: #333;
+  }
+}
+
+/* === DISABLED BUTTON PULSE ANIMATION === */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.65;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.submit-button:disabled {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 400px) {
+  .contact-header {
+    padding: 28px 16px 20px;
+
+    .header-title {
+      font-size: 1.5rem;
+    }
+
+    .header-subtitle {
+      font-size: 0.9rem;
+    }
+  }
+
+  .card-title {
+    font-size: 1.15rem;
+  }
+}
