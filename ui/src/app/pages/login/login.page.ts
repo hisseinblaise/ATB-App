@@ -80,38 +80,34 @@ export class LoginPage implements OnInit {
 }
 
   async doLogin() {
-     if (!this.loginForm.valid) return;
-  const email = this.f['email'].value;
-  const password = this.f['password'].value;
+    if (!this.loginForm.valid) return;
 
-  this.userService.login(email, password).subscribe({
-    next: res => {
+    const email = this.f['email'].value;
+    const password = this.f['password'].value;
+
+    const loading = await this.loadingCtrl.create({
+      message: 'Connexion en cours...',
+      spinner: 'crescent',
+    });
+    await loading.present();
+
+    try {
+      // Appel API login via AuthService
+      const res: any = await this.userService.login(email, password).toPromise();
+
+      // Si login réussi
       this.errorMessage = '';
       this.successMessage = res.message || 'Connexion réussie';
       console.log('Connexion réussie', res);
-    },
-    error: (err: any) => {
-      this.errorMessage = err.error.error || err.error.message || 'Erreur de connexion';
+
+      await this.navCtr.navigateRoot('/app');
+    } catch (err: any) {
+      // Gestion des erreurs (email non trouvé, mot de passe incorrect)
+      this.errorMessage = err.error?.error || err.error?.message || 'Erreur de connexion';
       this.successMessage = '';
       console.error('Erreur de connexion', err);
-    }
-  });
-    // create loading spinner
-    const loading = await this.loadingCtrl.create({
-      message: 'Logging in...',
-      spinner: 'crescent',
-    });
-    await loading.present(); // present loading spinner
-
-    try {
-      console.log('doLogin');
-      // simulate login (api call)
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      // this.router.navigate(['app']);
-      this.navCtr.navigateRoot('/app');
     } finally {
-      await loading.dismiss(); // dismiss loading spinner
+      await loading.dismiss();
     }
   }
 
